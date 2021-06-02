@@ -15,7 +15,7 @@ export default function SEO({ title }) {
   };
 
   return (
-    <Helmet title={`${seo.title} | ${pathname}`} titleTemplate={titleTemplate}>
+    <Helmet title={seo.title} titleTemplate={titleTemplate}>
       <link rel="preconnect" href="https://fonts.gstatic.com" />
       <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap"
@@ -30,6 +30,7 @@ const query = graphql`
     site {
       siteMetadata {
         defaultTitle: title
+        titleTemplate
       }
     }
   }

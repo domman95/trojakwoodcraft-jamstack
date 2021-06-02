@@ -1,6 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import SEO from '../components/SEO';
 import Layout from '../components/layout';
 
 export default function HomePage() {
-  return <Layout>Hello Trojak</Layout>;
+  return (
+    <Layout>
+      <SEO title="Strona Główna" />
+    </Layout>
+  );
 }
