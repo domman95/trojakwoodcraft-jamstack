@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: "trojakwoodcraft",
+    title: 'TROJAKwoodcraft',
+    titleTemplate: '%s · TROJAKwoodcraft',
   },
-  plugins: ["gatsby-plugin-styled-components"],
+  plugins: ['gatsby-plugin-styled-components'],
 };
