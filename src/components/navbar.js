@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import Logo from '../assets/logo';
+import Context from '../context';
 import Hamburger from './hamburger';
 
 const Nav = styled.nav`
@@ -8,20 +9,24 @@ const Nav = styled.nav`
   top: 0;
   left: 0;
   width: 100%;
+  background: ${({ show }) => (show ? '#212121' : 'transparent')};
   height: var(--navbarHeight);
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   padding: 10px 30px;
   z-index: 10;
+  transition: background 0.3s linear;
 
   .logo {
-    display: none;
+    display: flex;
     justify-content: center;
     align-items: center;
     width: 115px;
     height: 60px;
     object-fit: cover;
+    transform: ${({ show }) => (show ? 'translateY(0)' : 'translateY(-100%)')};
+    transition: transform 0.3s linear;
   }
 
   @media (min-width: 768px) {
@@ -90,12 +95,14 @@ const Links = styled.ul`
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  const { showLogo, setShowLogo } = useContext(Context);
+
   const toggle = () => {
     setIsOpen((prev) => !prev);
   };
 
   return (
-    <Nav>
+    <Nav show={showLogo}>
       <div className="logo">
         <Logo />
       </div>
