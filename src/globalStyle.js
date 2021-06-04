@@ -7,18 +7,28 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  :root {
+    --navbarHeight: 80px;
+    --bgcColor: linear-gradient(180deg, #212121 0%, #424242 100%)
+  }
+
   html {
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(180deg, #212121 0%, #424242 100%);
     font-size: 10px;
+    height: -webkit-fill-available;
+    background: var(--bgcColor);
   }
 
   body {
-    min-height: 100vh;
+    min-height: -webkit-fill-available;
     font-size: 1.6rem;
   }
 
-  .container {
-    // todo
+  html,
+  body,
+  #___gatsby,
+  div[tabindex] {
+    height: 100%;
   }
+
 `;

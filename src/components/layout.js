@@ -9,7 +9,7 @@ export default function Layout({ children }) {
       <GlobalStyle />
       <SEO />
       <Navbar />
-      <div className="container">{children}</div>
+      {children}
     </>
   );
 }

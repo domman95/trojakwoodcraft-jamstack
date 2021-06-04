@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Logo from './logo';
+import Logo from '../assets/logo';
 import Hamburger from './hamburger';
 
 const Nav = styled.nav`
@@ -8,19 +8,26 @@ const Nav = styled.nav`
   top: 0;
   left: 0;
   width: 100%;
-  height: 60px;
+  height: var(--navbarHeight);
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
-  padding: 5px 20px;
+  padding: 10px 30px;
+  z-index: 10;
 
   .logo {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    width: 115px;
     height: 60px;
     object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    & .logo {
+      width: 170px;
+    }
   }
 `;
 
@@ -41,6 +48,7 @@ const Links = styled.ul`
     color: white;
     list-style: none;
     margin: 10px 25px;
+    font-size: 1.4rem;
     padding: 5px;
     text-transform: uppercase;
     cursor: pointer;
@@ -53,14 +61,12 @@ const Links = styled.ul`
       bottom: 0;
       left: 0;
       border: 1px solid white;
-      transform: translateX(-100%);
+      transform: translateX(-101%);
       transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
-    &:hover {
-      &::before {
-        transform: translateX(0);
-      }
+    &:hover::before {
+      transform: translateX(0);
     }
   }
 
@@ -93,7 +99,7 @@ export default function Navbar() {
       <div className="logo">
         <Logo />
       </div>
-      <Hamburger toggle={toggle} />
+      <Hamburger open={isOpen} toggle={toggle} />
       <Links open={isOpen}>
         <li>poznajmy się</li>
         <li>realizacje</li>

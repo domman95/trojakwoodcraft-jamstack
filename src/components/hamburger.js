@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Menu = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,9 +21,9 @@ const Menu = styled.div`
   }
 `;
 
-export default function Hamburger({ toggle }) {
+export default function Hamburger({ open, toggle }) {
   return (
-    <Menu onClick={toggle}>
+    <Menu onClick={toggle} open={open}>
       <div className="hamburger__line hamburger__line__01 " />
       <div className="hamburger__line hamburger__line__02 " />
       <div className="hamburger__line hamburger__line__03 " />
