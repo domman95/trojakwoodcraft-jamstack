@@ -70,6 +70,10 @@ const Links = styled.ul`
       transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
     }
 
+    &:hover {
+      transform: skewY(1deg);
+    }
+
     &:hover::before {
       transform: translateX(0);
     }
@@ -79,9 +83,9 @@ const Links = styled.ul`
     position: static;
     transform: translateX(0);
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    padding: 0;
+    padding: 0 10px;
     height: 100%;
     background: transparent;
     transition: none;
@@ -108,9 +112,9 @@ export default function Navbar() {
       </div>
       <Hamburger open={isOpen} toggle={toggle} />
       <Links open={isOpen}>
-        <li>poznajmy się</li>
-        <li>realizacje</li>
-        <li>kontakt</li>
+        <li className="meetUs">poznajmy się</li>
+        <li className="realizations">realizacje</li>
+        <li className="contact">kontakt</li>
       </Links>
     </Nav>
   );

@@ -1,17 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
-import Section from './section';
+import Section from '../components/section';
 import Offer from '../assets/offer';
 import Locale from '../assets/locale';
 import Individual from '../assets/individual';
+import Next from '../components/next';
 
 const StyledAbout = styled.article`
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
   align-self: center;
   z-index: 5;
-  padding: 100px 20px;
+  padding: 100px 50px;
   max-width: 1440px;
   margin: 0 auto;
 
@@ -20,11 +22,16 @@ const StyledAbout = styled.article`
     font-size: 1.8rem;
     padding: 0 10px;
     margin: 0 0 20px;
+
+    span {
+      font-weight: bold;
+      font-size: 2rem;
+    }
   }
 
   .wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 460px));
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     justify-content: center;
     padding: 10px 0;
 
@@ -39,6 +46,12 @@ const StyledAbout = styled.article`
       margin: 10px;
       box-shadow: -10px 10px 4px rgba(0, 0, 0, 0.25);
       border-radius: 10px;
+      transition: transform 0.3s cubic-bezier(1, 0, 0, 1);
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: -10px 10px 4px rgba(10, 10, 10, 0.25);
+      }
 
       &:nth-last-child(1) {
         grid-column: span;
@@ -68,9 +81,9 @@ export default function About() {
     <Section title="poznajmy się">
       <StyledAbout>
         <p className="about">
-          <b>TROJAKwoodcraft </b>
+          <span>TROJAKwoodcraft </span>
           jest firmą która istnieje krótko na rynku ale z wielkim zapałem,
-          zaangażowaniem i świeżą energią. Zajmujemy się produkcją małej i dużej
+          zaangażowaniem i świeżą energią zajmujemy się produkcją małej i dużej
           architektury ogrodowej z drewna oraz drewna łączonego z metalem.
         </p>
         <div className="wrapper">
@@ -105,6 +118,7 @@ export default function About() {
           </div>
         </div>
       </StyledAbout>
+      <Next name="realizacje" />
     </Section>
   );
 }

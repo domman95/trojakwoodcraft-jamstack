@@ -5,6 +5,7 @@ import Instagram from '../assets/instagram';
 import Facebook from '../assets/facebook';
 import Arrow from '../assets/arrow';
 import Context from '../context';
+import Next from './next';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -37,16 +38,45 @@ const StyledHeader = styled.header`
     bottom: 40px;
     left: 20px;
     z-index: 10;
+  }
+`;
 
-    .media {
-      display: flex;
-      width: 24px;
-      height: 24px;
-      object-fit: cover;
+const Media = styled.a`
+  position: relative;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 
-      &.facebook {
-        margin-top: 20px;
-      }
+  &:hover::before {
+    content: ${({ name }) => `'${name}'`};
+    position: absolute;
+    height: 100%;
+    background: white;
+    top: -25%;
+    left: 100%;
+    color: #333333;
+    padding: 0 5px;
+    border-radius: 1px;
+    animation: delay 0.3s 0.3s linear forwards;
+  }
+
+  &:hover {
+    transform: skewY(-5deg) scale(1.3);
+  }
+
+  &.facebook {
+    margin-top: 20px;
+  }
+
+  @keyframes delay {
+    from {
+      text-decoration: none;
+    }
+
+    to {
+      text-decoration: underline;
     }
   }
 `;
@@ -79,13 +109,20 @@ export default function Header() {
         <Logo />
       </div>
       <div className="socials">
-        <a href="#" className="instagram media">
+        <Media
+          href="https://www.instagram.com/trojakwoodcraft/"
+          className="instagram media"
+          name="ig:trojakwoodcraft">
           <Instagram />
-        </a>
-        <a href="#" className="facebook media">
+        </Media>
+        <Media
+          href="https://www.facebook.com/TROJAKwoodcraft-109441140834265/"
+          className="facebook media"
+          name="fb:trojakwoodcraft">
           <Facebook />
-        </a>
+        </Media>
       </div>
+      <Next name="poznajmy się" />
     </StyledHeader>
   );
 }
