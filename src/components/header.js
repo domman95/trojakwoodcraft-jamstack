@@ -28,6 +28,10 @@ const StyledHeader = styled.header`
     height: auto;
     object-fit: cover;
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8d82b20263ecc66bab8da23185e2fbf3881f73fd
   .socials {
     display: flex;
     flex-direction: column;
