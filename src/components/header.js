@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Logo from '../assets/logo';
 import Instagram from '../assets/instagram';
 import Facebook from '../assets/facebook';
-import Arrow from '../assets/arrow';
 import Context from '../context';
 import Next from './next';
 
@@ -28,10 +27,7 @@ const StyledHeader = styled.header`
     height: auto;
     object-fit: cover;
   }
-<<<<<<< HEAD
-=======
 
->>>>>>> 8d82b20263ecc66bab8da23185e2fbf3881f73fd
   .socials {
     display: flex;
     flex-direction: column;

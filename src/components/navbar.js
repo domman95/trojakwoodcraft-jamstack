@@ -58,12 +58,9 @@ const Links = styled.ul`
     text-transform: uppercase;
     cursor: pointer;
     overflow: hidden;
-<<<<<<< HEAD
     transform: translateX(-5%);
     opacity: 0;
     animation: show 1s linear forwards;
-=======
->>>>>>> 8d82b20263ecc66bab8da23185e2fbf3881f73fd
 
     &::before {
       content: '';
@@ -83,7 +80,6 @@ const Links = styled.ul`
     &:hover::before {
       transform: translateX(0);
     }
-<<<<<<< HEAD
 
     @keyframes show {
       to {
@@ -91,8 +87,6 @@ const Links = styled.ul`
         transform: translateX(0);
       }
     }
-=======
->>>>>>> 8d82b20263ecc66bab8da23185e2fbf3881f73fd
   }
 
   @media (min-width: 768px) {
