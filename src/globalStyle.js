@@ -17,6 +17,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 10px;
     height: -webkit-fill-available;
     background: var(--bgcColor);
+    color: #cecece;
   }
 
   body {
@@ -29,6 +30,10 @@ export const GlobalStyle = createGlobalStyle`
   #___gatsby,
   div[tabindex] {
     height: 100%;
+  }
+
+  button {
+    color: #cecece;
   }
 
 `;

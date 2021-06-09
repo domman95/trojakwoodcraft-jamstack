@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import About from '../templates/about';
+import Contact from '../templates/contact';
 import Realizations from '../templates/realizations';
 
 const StyledMain = styled.main`
@@ -13,6 +14,7 @@ export default function Main() {
     <StyledMain>
       <About />
       <Realizations />
+      <Contact />
     </StyledMain>
   );
 }

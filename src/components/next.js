@@ -13,7 +13,6 @@ const Container = styled.div`
   transform: translateX(-50%);
 
   .name {
-    color: #cecece;
     text-transform: uppercase;
   }
 

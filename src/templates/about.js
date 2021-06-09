@@ -4,21 +4,14 @@ import Section from '../components/section';
 import Offer from '../assets/offer';
 import Locale from '../assets/locale';
 import Individual from '../assets/individual';
-import Next from '../components/next';
 
-const StyledAbout = styled.article`
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr;
-  align-self: center;
-  z-index: 5;
-  padding: 100px 50px;
-  max-width: 1440px;
-  margin: 0 auto;
+const StyledAbout = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   .about {
-    color: white;
     font-size: 1.8rem;
     padding: 0 10px;
     margin: 0 0 20px;
@@ -31,9 +24,8 @@ const StyledAbout = styled.article`
 
   .wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    justify-content: center;
-    padding: 10px 0;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin-top: 20px;
 
     .card {
       display: flex;
@@ -68,7 +60,6 @@ const StyledAbout = styled.article`
       }
 
       .paragraph {
-        color: #cecece;
         padding: 0 10px;
         font-size: 1.8rem;
       }
@@ -78,7 +69,7 @@ const StyledAbout = styled.article`
 
 export default function About() {
   return (
-    <Section title="poznajmy się">
+    <Section title="poznajmy się" nextName="realizacje">
       <StyledAbout>
         <p className="about">
           <span>TROJAKwoodcraft </span>
@@ -86,7 +77,7 @@ export default function About() {
           zaangażowaniem i świeżą energią zajmujemy się produkcją małej i dużej
           architektury ogrodowej z drewna oraz drewna łączonego z metalem.
         </p>
-        <div className="wrapper">
+        <article className="wrapper">
           <div className="card offer">
             <div className="icon">
               <Offer />
@@ -98,7 +89,7 @@ export default function About() {
               metamorfozy i przebudowy obiektów drewnianych.
             </p>
           </div>
-          <div className="card locale">
+          <div className="card locally">
             <div className="icon">
               <Locale />
             </div>
@@ -116,9 +107,8 @@ export default function About() {
               doradzając najlepsze rozwiązania.
             </p>
           </div>
-        </div>
+        </article>
       </StyledAbout>
-      <Next name="realizacje" />
     </Section>
   );
 }

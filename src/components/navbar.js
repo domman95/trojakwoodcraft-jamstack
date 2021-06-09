@@ -50,7 +50,6 @@ const Links = styled.ul`
 
   li {
     position: relative;
-    color: white;
     list-style: none;
     margin: 10px 25px;
     font-size: 1.4rem;

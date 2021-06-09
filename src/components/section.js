@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Next from './next';
 
 const StyledSection = styled.section`
   position: relative;
@@ -43,12 +44,27 @@ const StyledSection = styled.section`
   }
 `;
 
-export default function Section({ title, children }) {
+const Container = styled.div`
+  position: relative;
+  max-width: 1440px;
+  display: grid;
+  z-index: 5;
+  border: 1px solid white;
+  flex: 1;
+  padding: 150px 50px;
+`;
+
+export default function Section({ title, children, nextName }) {
   return (
     <StyledSection>
       <h2 className="title up">{title}</h2>
       <h2 className="title down">{title}</h2>
-      {children}
+      <Container>
+        <>
+          {children}
+          <Next name={nextName} />
+        </>
+      </Container>
     </StyledSection>
   );
 }
