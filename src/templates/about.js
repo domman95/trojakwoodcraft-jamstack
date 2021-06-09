@@ -24,10 +24,11 @@ const StyledAbout = styled.div`
 
   .wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
     margin-top: 20px;
 
     .card {
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -36,13 +37,38 @@ const StyledAbout = styled.div`
       background: #212121;
       padding: 30px 10px;
       margin: 10px;
+      border-radius: 6px;
       box-shadow: -10px 10px 4px rgba(0, 0, 0, 0.25);
-      border-radius: 10px;
-      transition: transform 0.3s cubic-bezier(1, 0, 0, 1);
+      transition: all 0.3s cubic-bezier(1, 0, 0, 1);
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #333333;
+        box-shadow: 20px 0 0 #333333;
+        top: 10px;
+        left: 15px;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        height: 30px;
+        width: 8px;
+        background: #333333;
+        transform: skewX(13deg);
+        background: #333333;
+        box-shadow: 20px 0 0 #333333;
+        top: -10px;
+        left: 15px;
+      }
 
       &:hover {
         transform: scale(1.05);
-        box-shadow: -10px 10px 4px rgba(10, 10, 10, 0.25);
+        box-shadow: -15px 15px 4px rgba(10, 10, 10, 0.25);
       }
 
       &:nth-last-child(1) {

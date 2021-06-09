@@ -7,7 +7,6 @@ const StyledSection = styled.section`
   display: flex;
   justify-content: center;
   align-content: center;
-  min-height: 100vh;
   border-bottom: 20px solid #424242;
 
   .title {
@@ -34,11 +33,41 @@ const StyledSection = styled.section`
       top: 40px;
       right: 0;
       transform: translateX(65%);
+      animation: moveForUp 10s linear infinite;
     }
 
     &.down {
       bottom: 40px;
       left: 0;
+      transform: translateX(-35%);
+      animation: moveForDown 10s linear infinite;
+    }
+  }
+
+  @keyframes moveForUp {
+    0% {
+      transform: translateX(65%);
+    }
+    50% {
+      transform: translateX(66%);
+      text-shadow: -8px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    100% {
+      transform: translateX(65%);
+    }
+  }
+
+  @keyframes moveForDown {
+    0% {
+      transform: translateX(-35%);
+    }
+    50% {
+      transform: translateX(-36%);
+      text-shadow: -8px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    100% {
       transform: translateX(-35%);
     }
   }
@@ -49,7 +78,6 @@ const Container = styled.div`
   max-width: 1440px;
   display: grid;
   z-index: 5;
-  border: 1px solid white;
   flex: 1;
   padding: 150px 50px;
 `;
@@ -62,7 +90,7 @@ export default function Section({ title, children, nextName }) {
       <Container>
         <>
           {children}
-          <Next name={nextName} />
+          {nextName && <Next name={nextName} />}
         </>
       </Container>
     </StyledSection>
