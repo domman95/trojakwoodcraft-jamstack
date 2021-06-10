@@ -116,7 +116,7 @@ const Links = styled.ul`
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { showLogo, setShowLogo } = useContext(Context);
+  const { showLogo } = useContext(Context);
 
   const toggle = () => {
     setIsOpen((prev) => !prev);

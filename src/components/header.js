@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useContext } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import styled from 'styled-components';
 import Logo from '../assets/logo';
 import Instagram from '../assets/instagram';
@@ -26,6 +26,7 @@ const StyledHeader = styled.header`
     margin: 0 auto;
     height: auto;
     object-fit: cover;
+    opacity: 0;
   }
 
   .socials {
@@ -88,6 +89,8 @@ export default function Header() {
   useEffect(() => {
     const logo = myRef.current;
 
+    logo.style.opacity = '1';
+
     const getOffsetTop = () => {
       const top = logo.getBoundingClientRect().top;
 
@@ -100,7 +103,7 @@ export default function Header() {
     return () => {
       window.removeEventListener('scroll', getOffsetTop);
     };
-  }, [myRef, showLogo]);
+  }, [myRef, showLogo, setShowLogo]);
 
   return (
     <StyledHeader>

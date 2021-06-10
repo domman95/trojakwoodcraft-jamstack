@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
-const SVG = styled.svg`
-  /* filter: drop-shadow(-10px 10px 4px rgba(0, 0, 0, 0.25)); */
+const StyledSvg = styled.svg`
   animation: fill 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 2.4s;
 
   @keyframes test {
@@ -42,7 +41,7 @@ export default function Logo() {
 
   return (
     <>
-      <SVG
+      <StyledSvg
         width="1001"
         height="174"
         viewBox="0 0 1001 174"
@@ -176,7 +175,7 @@ export default function Logo() {
           strokeWidth="4"
           mask="url(#path-1-inside-1)"
         />
-      </SVG>
+      </StyledSvg>
     </>
   );
 }

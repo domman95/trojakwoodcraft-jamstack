@@ -2,8 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '../components/button';
 import Section from '../components/section';
-import Instagram from '../assets/instagram';
-import Facebook from '../assets/facebook';
 
 const StyledContact = styled.div`
   display: grid;

@@ -42,7 +42,7 @@ export default function Footer() {
       </p>
       <Link to="/">Polityka prywatności</Link>
       <div className="designed">
-        Wykonanie: <Link to="https://dlwebdev.com">dlwebdev.com</Link> | Dominik
+        Wykonanie: <a href="https://dlwebdev.com">dlwebdev.com</a> | Dominik
         Lasek
       </div>
     </StyledFooter>

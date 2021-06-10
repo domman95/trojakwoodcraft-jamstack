@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SEO from './SEO';
 import { GlobalStyle } from '../globalStyle';
 import Navbar from './navbar';
