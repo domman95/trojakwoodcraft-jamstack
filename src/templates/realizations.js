@@ -27,7 +27,6 @@ const StyledRealizations = styled.div`
     .mainInfo__title {
       text-transform: uppercase;
       font-size: 2rem;
-      align-self: flex-end;
     }
 
     .mainInfo__content {
@@ -41,11 +40,17 @@ const StyledRealizations = styled.div`
     }
   }
 
-  &:nth-child(2) {
-    direction: rtl;
+  @media (min-width: 720px) {
+    .mainInfo__title {
+      align-self: flex-end;
+    }
 
-    .mainInfo__content {
-      direction: ltr;
+    &:nth-child(2) {
+      direction: rtl;
+
+      .mainInfo__content {
+        direction: ltr;
+      }
     }
   }
 `;

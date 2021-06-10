@@ -42,8 +42,11 @@ const Links = styled.ul`
   right: 0;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background: linear-gradient(180deg, #333333 0%, #424242 100%);
   padding: 60px 10px;
+  width: 100vw;
   height: 100vh;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
   transition: transform 0.3s ease-in;
@@ -56,10 +59,11 @@ const Links = styled.ul`
     padding: 5px;
     text-transform: uppercase;
     cursor: pointer;
+    border-bottom: 1px solid #cecece;
     overflow: hidden;
-    transform: translateX(-5%);
+    transform: translateY(-25%);
     opacity: 0;
-    animation: show 1s linear forwards;
+    animation: ${({ open }) => open && `show 1s linear forwards var(--delay)`};
 
     &::before {
       content: '';
@@ -83,7 +87,7 @@ const Links = styled.ul`
     @keyframes show {
       to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateY(0);
       }
     }
   }
@@ -101,6 +105,10 @@ const Links = styled.ul`
 
     li {
       margin: 5px 15px;
+      opacity: 1;
+      border: none;
+      animation: none;
+      transform: translateY(0);
     }
   }
 `;
@@ -121,9 +129,15 @@ export default function Navbar() {
       </div>
       <Hamburger open={isOpen} toggle={toggle} />
       <Links open={isOpen}>
-        <li className="meetUs">poznajmy się</li>
-        <li className="realizations">realizacje</li>
-        <li className="contact">kontakt</li>
+        <li className="meetUs" style={{ '--delay': '.1s' }}>
+          poznajmy się
+        </li>
+        <li className="realizations" style={{ '--delay': '.2s' }}>
+          realizacje
+        </li>
+        <li className="contact" style={{ '--delay': '.3s' }}>
+          kontakt
+        </li>
       </Links>
     </Nav>
   );

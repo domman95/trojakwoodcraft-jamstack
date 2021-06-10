@@ -7,7 +7,7 @@ import Facebook from '../assets/facebook';
 
 const StyledContact = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-auto-rows: minmax(240px, 1fr);
   align-content: center;
   box-shadow: -10px 10px 4px rgba(0, 0, 0, 0.25);
