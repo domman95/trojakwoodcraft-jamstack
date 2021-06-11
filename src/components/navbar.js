@@ -9,7 +9,8 @@ const Nav = styled.nav`
   top: 0;
   left: 0;
   width: 100%;
-  background: ${({ show }) => (show ? '#212121' : 'transparent')};
+  background: ${({ show }) => (show ? 'rgba(33, 33, 33, .75)' : 'transparent')};
+  backdrop-filter: blur(5px);
   height: var(--navbarHeight);
   display: flex;
   justify-content: space-between;
@@ -47,7 +48,7 @@ const Links = styled.ul`
   background: linear-gradient(180deg, #333333 0%, #424242 100%);
   padding: 60px 10px;
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 100%);
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
   transition: transform 0.3s ease-in;
 

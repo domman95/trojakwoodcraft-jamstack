@@ -4,6 +4,7 @@ import Section from '../components/section';
 import Offer from '../assets/offer';
 import Locale from '../assets/locale';
 import Individual from '../assets/individual';
+import Tilt from 'react-vanilla-tilt';
 
 const StyledAbout = styled.div`
   display: flex;
@@ -37,9 +38,16 @@ const StyledAbout = styled.div`
       background: #212121;
       padding: 30px 10px;
       margin: 10px;
-      border-radius: 6px;
       box-shadow: -10px 10px 4px rgba(0, 0, 0, 0.25);
       transition: all 0.3s cubic-bezier(1, 0, 0, 1);
+
+      .tilt {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
 
       &::before {
         content: '';
@@ -83,6 +91,7 @@ const StyledAbout = styled.div`
         height: 64px;
         object-fit: cover;
         margin-bottom: 20px;
+        transform: translateZ(55px);
       }
 
       .paragraph {
@@ -105,33 +114,39 @@ export default function About() {
         </p>
         <article className="wrapper">
           <div className="card offer">
-            <div className="icon">
-              <Offer />
-            </div>
-            <p className="paragraph">
-              Produkty jakie między innymi oferujemy to domki narzędziowe, domki
-              letniskowe, budy, kurniki, drewutnie, studnie ozdobne, stoły,
-              ławki, huśtawki, altanki oraz wiaty. Przeprowadzamy również
-              metamorfozy i przebudowy obiektów drewnianych.
-            </p>
+            <Tilt className="tilt" style={{}}>
+              <div className="icon">
+                <Offer />
+              </div>
+              <p className="paragraph">
+                Produkty jakie między innymi oferujemy to domki narzędziowe,
+                domki letniskowe, budy, kurniki, drewutnie, studnie ozdobne,
+                stoły, ławki, huśtawki, altanki oraz wiaty. Przeprowadzamy
+                również metamorfozy i przebudowy obiektów drewnianych.
+              </p>
+            </Tilt>
           </div>
           <div className="card locally">
-            <div className="icon">
-              <Locale />
-            </div>
-            <p className="paragraph">
-              Stosujemy materiały wysokiej jakości od zaprzyjaźnionych, stałych
-              dostawców. Tym samym wspierając lokalny rynek.
-            </p>
+            <Tilt className="tilt" style={{}}>
+              <div className="icon">
+                <Locale />
+              </div>
+              <p className="paragraph">
+                Stosujemy materiały wysokiej jakości od zaprzyjaźnionych,
+                stałych dostawców. Tym samym wspierając lokalny rynek.
+              </p>
+            </Tilt>
           </div>
           <div className="card individual">
-            <div className="icon">
-              <Individual />
-            </div>
-            <p className="paragraph">
-              Do każdego zlecenia podchodzimy indywidualnie, słuchając potrzeb i
-              doradzając najlepsze rozwiązania.
-            </p>
+            <Tilt className="tilt" style={{}}>
+              <div className="icon">
+                <Individual />
+              </div>
+              <p className="paragraph">
+                Do każdego zlecenia podchodzimy indywidualnie, słuchając potrzeb
+                i doradzając najlepsze rozwiązania.
+              </p>
+            </Tilt>
           </div>
         </article>
       </StyledAbout>

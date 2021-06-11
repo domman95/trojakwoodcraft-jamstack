@@ -32,8 +32,12 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
 
-  button {
+  button,
+  input,
+  textarea {
     color: #cecece;
+    --webkit-appearance: none;
+    border-radius: 0;
   }
 
 `;
