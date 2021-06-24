@@ -18,6 +18,7 @@ export const GlobalStyle = createGlobalStyle`
     height: -webkit-fill-available;
     background: var(--bgcColor);
     color: #cecece;
+    scroll-behavior: smooth;
   }
 
   body {
@@ -38,6 +39,11 @@ export const GlobalStyle = createGlobalStyle`
     color: #cecece;
     --webkit-appearance: none;
     border-radius: 0;
+  }
+
+  a {
+    color: #cecece;
+    text-decoration: none;
   }
 
 `;

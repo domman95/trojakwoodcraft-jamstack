@@ -108,7 +108,7 @@ export default function Header() {
   return (
     <StyledHeader>
       <div className="logo" ref={myRef}>
-        <Logo />
+        <Logo animation />
       </div>
       <div className="socials">
         <Media

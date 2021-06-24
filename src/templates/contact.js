@@ -9,7 +9,8 @@ const StyledContact = styled.div`
   grid-auto-rows: minmax(240px, 1fr);
   align-content: center;
   box-shadow: -10px 10px 4px rgba(0, 0, 0, 0.25);
-  background: #212121;
+  background: rgba(33, 33, 33, 0.8);
+  backdrop-filter: blur(5px);
   padding: 20px;
 `;
 
@@ -88,7 +89,7 @@ const ContactFormWrapper = styled.div`
 
 export default function Contact() {
   return (
-    <Section title="kontakt">
+    <Section id="contact" title="kontakt">
       <StyledContact>
         <ContactInfoWrapper>
           <div className="box phone">

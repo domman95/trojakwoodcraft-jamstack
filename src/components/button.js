@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import { navigate } from 'gatsby';
 
 const StyledButton = styled.button`
   border: none;
@@ -22,9 +23,15 @@ const StyledButton = styled.button`
     `}
 `;
 
-export default function Button({ children, primary, secondary }) {
+export default function Button({ children, primary, secondary, slug = null }) {
+  const handleClick = (slug) => {
+    navigate(`/realizations/${slug}`, { replace: true });
+  };
   return (
-    <StyledButton primary={primary} secondary={secondary}>
+    <StyledButton
+      primary={primary}
+      secondary={secondary}
+      onClick={slug && (() => handleClick(slug))}>
       {children}
     </StyledButton>
   );

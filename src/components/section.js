@@ -82,9 +82,9 @@ const Container = styled.div`
   padding: 150px 50px;
 `;
 
-export default function Section({ title, children, nextName }) {
+export default function Section({ id, title, children, nextName }) {
   return (
-    <StyledSection>
+    <StyledSection id={id}>
       <h2 className="title up">{title}</h2>
       <h2 className="title down">{title}</h2>
       <Container>

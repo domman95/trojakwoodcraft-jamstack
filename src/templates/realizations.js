@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Section from '../components/section';
-import Pic from '../assets/pic.png';
 import Button from '../components/button';
 
 const StyledRealizations = styled.div`
@@ -21,8 +20,9 @@ const StyledRealizations = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background: #212121;
+    background: rgba(33, 33, 33, 0.5);
     padding: 20px;
+    backdrop-filter: blur(5px);
 
     .mainInfo__title {
       text-transform: uppercase;
@@ -55,59 +55,23 @@ const StyledRealizations = styled.div`
   }
 `;
 
-export default function Realizations() {
+export default function Realizations({ data }) {
   return (
     <Section title="realizacje" nextName="kontakt">
-      <StyledRealizations className="realization">
-        <div className="mainImg">
-          <img src={Pic} alt="" />
-        </div>
-        <div className="mainInfo">
-          <h3 className="mainInfo__title">title</h3>
-          <p className="mainInfo__content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
-            purus sit amet luctus venenatis, lectus magna fringilla urna,
-            porttitor rhoncus dolor purus non enim praesent elementum facilisis
-            leo, vel
-          </p>
-          <Button primary>zobacz więcej</Button>
-        </div>
-      </StyledRealizations>
-      <StyledRealizations className="realization">
-        <div className="mainImg">
-          <img src={Pic} alt="" />
-        </div>
-        <div className="mainInfo">
-          <h3 className="mainInfo__title">title</h3>
-          <p className="mainInfo__content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
-            purus sit amet luctus venenatis, lectus magna fringilla urna,
-            porttitor rhoncus dolor purus non enim praesent elementum facilisis
-            leo, velpurus sit amet luctus venenatis, lectus magna fringilla
-            urna, porttitor rhoncus dolor purus non enim praesent elementum
-            facilisis leo, vel
-          </p>
-          <Button primary>zobacz więcej</Button>
-        </div>
-      </StyledRealizations>
-      <StyledRealizations className="realization">
-        <div className="mainImg">
-          <img src={Pic} alt="" />
-        </div>
-        <div className="mainInfo">
-          <h3 className="mainInfo__title">title</h3>
-          <p className="mainInfo__content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam,
-            purus sit amet luctus venenatis, lectus magna fringilla urna,
-            porttitor rhoncus dolor purus non enim praesent elementum facilisis
-            leo, vel Lorem ipsum dolor sit amet, consectetur adipiscing elit ut
-            aliquam, purus sit amet luctus venenatis, lectus magna fringilla
-            urna, porttitor rhoncus dolor purus non enim praesent elementum
-            facilisis leo, vel
-          </p>
-          <Button primary>zobacz więcej</Button>
-        </div>
-      </StyledRealizations>
+      {data.map((item) => (
+        <StyledRealizations className="realization" key={item.id}>
+          <div className="mainImg">
+            <img src={item.images[0].url} alt={item.images[0].alt} />
+          </div>
+          <div className="mainInfo">
+            <h3 className="mainInfo__title">{item.title}</h3>
+            <p className="mainInfo__content">{item.content}</p>
+            <Button primary slug={item.slug}>
+              zobacz więcej
+            </Button>
+          </div>
+        </StyledRealizations>
+      ))}
     </Section>
   );
 }

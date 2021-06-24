@@ -1,5 +1,6 @@
+import { Link } from 'gatsby';
 import React, { useState, useContext } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Logo from '../assets/logo';
 import Context from '../context';
 import Hamburger from './hamburger';
@@ -28,6 +29,11 @@ const Nav = styled.nav`
     object-fit: cover;
     transform: ${({ show }) => (show ? 'translateY(0)' : 'translateY(-100%)')};
     transition: transform 0.3s linear;
+    ${({ animation }) =>
+      animation &&
+      css`
+        transform: translateY(0);
+      `}
   }
 
   @media (min-width: 768px) {
@@ -45,10 +51,14 @@ const Links = styled.ul`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(180deg, #333333 0%, #424242 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(51, 51, 51, 0.95) 0%,
+    rgba(66, 66, 66, 0.95) 100%
+  );
   padding: 60px 10px;
   width: 100vw;
-  height: calc(100vh - 100%);
+  height: 100vh;
   transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(100%)')};
   transition: transform 0.3s ease-in;
 
@@ -65,6 +75,11 @@ const Links = styled.ul`
     transform: translateY(-25%);
     opacity: 0;
     animation: ${({ open }) => open && `show 1s linear forwards var(--delay)`};
+
+    a {
+      color: #cecece;
+      text-decoration: none;
+    }
 
     &::before {
       content: '';
@@ -114,7 +129,7 @@ const Links = styled.ul`
   }
 `;
 
-export default function Navbar() {
+export default function Navbar({ animation }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const { showLogo } = useContext(Context);
@@ -124,20 +139,22 @@ export default function Navbar() {
   };
 
   return (
-    <Nav show={showLogo}>
-      <div className="logo">
-        <Logo />
-      </div>
+    <Nav show={showLogo} animation={animation}>
+      <Link to="/">
+        <div className="logo">
+          <Logo animation={animation} />
+        </div>
+      </Link>
       <Hamburger open={isOpen} toggle={toggle} />
       <Links open={isOpen}>
         <li className="meetUs" style={{ '--delay': '.1s' }}>
-          poznajmy się
+          <Link to="/#about">poznajmy się</Link>
         </li>
         <li className="realizations" style={{ '--delay': '.2s' }}>
-          realizacje
+          <Link to="/realizations">realizacje</Link>
         </li>
         <li className="contact" style={{ '--delay': '.3s' }}>
-          kontakt
+          <Link to="/#contact">kontakt</Link>
         </li>
       </Links>
     </Nav>

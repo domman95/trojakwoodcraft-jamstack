@@ -1,10 +1,21 @@
 import React, { useEffect } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const StyledSvg = styled.svg`
-  animation: fill 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 2.4s;
+  height: 100%;
 
-  @keyframes test {
+  ${({ animation }) =>
+    animation
+      ? css`
+          animation: fill 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 2.4s;
+        `
+      : css`
+          animation: none;
+          fill: white;
+          stroke-dashoffset: 0;
+        `}
+
+  @keyframes drawStroke {
     to {
       opacity: 1;
       stroke-dashoffset: 0;
@@ -24,24 +35,29 @@ const StyledSvg = styled.svg`
   }
 `;
 
-export default function Logo() {
+export default function Logo({ animation }) {
   useEffect(() => {
     const logo = document.querySelectorAll('#logo path');
 
-    logo.forEach((item) => {
-      item.style.strokeDashoffset = Math.round(item.getTotalLength());
-      item.style.strokeDasharray = Math.round(item.getTotalLength());
-      item.style.opacity = '0';
-      item.style.transform = 'translateY(-2%)';
-      item.style.animation = `test 2s ease-out forwards ${Number(
-        Math.random().toFixed(2)
-      )}s`;
-    });
-  }, []);
+    if (animation) {
+      logo.forEach((item) => {
+        item.style.strokeDashoffset = Math.round(item.getTotalLength());
+        item.style.strokeDasharray = Math.round(item.getTotalLength());
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(-2%)';
+        item.style.animation = `drawStroke 2s ease-out forwards ${Number(
+          Math.random().toFixed(2)
+        )}s`;
+      });
+    }
+
+    if (!animation) return;
+  }, [animation]);
 
   return (
     <>
       <StyledSvg
+        animation={animation}
         width="1001"
         height="174"
         viewBox="0 0 1001 174"

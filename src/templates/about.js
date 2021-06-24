@@ -79,10 +79,6 @@ const StyledAbout = styled.div`
         box-shadow: -15px 15px 4px rgba(10, 10, 10, 0.25);
       }
 
-      &:nth-last-child(1) {
-        grid-column: span;
-      }
-
       .icon {
         display: flex;
         justify-content: center;
@@ -104,7 +100,7 @@ const StyledAbout = styled.div`
 
 export default function About() {
   return (
-    <Section title="poznajmy się" nextName="realizacje">
+    <Section id="about" title="poznajmy się" nextName="realizacje">
       <StyledAbout>
         <p className="about">
           <span>TROJAKwoodcraft </span>
