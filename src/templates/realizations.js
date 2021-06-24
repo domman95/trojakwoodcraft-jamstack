@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Section from '../components/section';
 import Button from '../components/button';
@@ -56,22 +56,36 @@ const StyledRealizations = styled.div`
 `;
 
 export default function Realizations({ data }) {
+  const [sortedRealization, setSortedRealization] = useState(null);
+
+  useEffect(() => {
+    const sortedByPublishedAt = data.sort((a, b) => {
+      const publishedAtA = a.meta.publishedAt;
+      const publishedAtB = b.meta.publishedAt;
+
+      return publishedAtA < publishedAtB ? 1 : -1;
+    });
+
+    setSortedRealization(sortedByPublishedAt.slice(0, 3));
+  }, [data]);
+
   return (
     <Section title="realizacje" nextName="kontakt">
-      {data.map((item) => (
-        <StyledRealizations className="realization" key={item.id}>
-          <div className="mainImg">
-            <img src={item.images[0].url} alt={item.images[0].alt} />
-          </div>
-          <div className="mainInfo">
-            <h3 className="mainInfo__title">{item.title}</h3>
-            <p className="mainInfo__content">{item.content}</p>
-            <Button primary slug={item.slug}>
-              zobacz więcej
-            </Button>
-          </div>
-        </StyledRealizations>
-      ))}
+      {sortedRealization &&
+        sortedRealization.map((item) => (
+          <StyledRealizations className="realization" key={item.id}>
+            <div className="mainImg">
+              <img src={item.images[0].url} alt={item.images[0].alt} />
+            </div>
+            <div className="mainInfo">
+              <h3 className="mainInfo__title">{item.title}</h3>
+              <p className="mainInfo__content">{item.content}</p>
+              <Button primary slug={item.slug}>
+                zobacz więcej
+              </Button>
+            </div>
+          </StyledRealizations>
+        ))}
     </Section>
   );
 }

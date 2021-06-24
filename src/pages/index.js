@@ -29,6 +29,9 @@ export const query = graphql`
     allDatoCmsRealization {
       nodes {
         id
+        meta {
+          publishedAt
+        }
         images {
           title
           url
