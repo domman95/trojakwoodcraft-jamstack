@@ -25,7 +25,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   result.data.allDatoCmsRealization.nodes.forEach((node) => {
     createPage({
-      path: `realizations/${node.slug}`,
+      path: `realizacje/${node.slug}`,
       component: realizationTemplate,
       context: node,
     });

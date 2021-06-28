@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Next from './next';
+import ScrollDownSign from './scrollDownSign';
 
 const StyledSection = styled.section`
   position: relative;
@@ -90,7 +90,7 @@ export default function Section({ id, title, children, nextName }) {
       <Container>
         <>
           {children}
-          {nextName && <Next name={nextName} />}
+          {nextName && <ScrollDownSign name={nextName} />}
         </>
       </Container>
     </StyledSection>

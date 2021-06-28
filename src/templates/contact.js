@@ -89,7 +89,7 @@ const ContactFormWrapper = styled.div`
 
 export default function Contact() {
   return (
-    <Section id="contact" title="kontakt">
+    <Section id="kontakt" title="kontakt">
       <StyledContact>
         <ContactInfoWrapper>
           <div className="box phone">

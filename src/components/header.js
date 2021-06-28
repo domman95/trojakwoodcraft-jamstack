@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import styled from 'styled-components';
-import Logo from '../assets/logo';
+import AnimationLogo from '../components/animationLogo';
 import Instagram from '../assets/instagram';
 import Facebook from '../assets/facebook';
 import Context from '../context';
-import Next from './next';
+import Next from './scrollDownSign';
 
 const StyledHeader = styled.header`
   display: flex;
@@ -26,7 +26,6 @@ const StyledHeader = styled.header`
     margin: 0 auto;
     height: auto;
     object-fit: cover;
-    opacity: 0;
   }
 
   .socials {
@@ -82,20 +81,14 @@ const Media = styled.a`
 `;
 
 export default function Header() {
-  const myRef = useRef();
-
   const { showLogo, setShowLogo } = useContext(Context);
 
   useEffect(() => {
-    const logo = myRef.current;
-
-    logo.style.opacity = '1';
-
     const getOffsetTop = () => {
-      const top = logo.getBoundingClientRect().top;
+      const top = window.scrollY;
 
-      if (top <= 0 && !showLogo) setShowLogo(true);
-      if (top >= 0 && showLogo) setShowLogo(false);
+      if (top >= 280 && !showLogo) setShowLogo(true);
+      if (top <= 279 && showLogo) setShowLogo(false);
     };
 
     window.addEventListener('scroll', getOffsetTop);
@@ -103,12 +96,12 @@ export default function Header() {
     return () => {
       window.removeEventListener('scroll', getOffsetTop);
     };
-  }, [myRef, showLogo, setShowLogo]);
+  }, [showLogo, setShowLogo]);
 
   return (
     <StyledHeader>
-      <div className="logo" ref={myRef}>
-        <Logo animation />
+      <div className="logo">
+        <AnimationLogo />
       </div>
       <div className="socials">
         <Media

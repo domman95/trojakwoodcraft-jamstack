@@ -12,7 +12,7 @@ export default function HomePage({ data }) {
   const realizations = data.allDatoCmsRealization.nodes;
 
   return (
-    <Layout animation={false}>
+    <Layout>
       <SEO title="Strona Główna" />
       <Header />
       <Main>

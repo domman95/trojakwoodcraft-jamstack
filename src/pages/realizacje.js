@@ -9,6 +9,7 @@ import Arrow from '../assets/arrow';
 import Pic from '../assets/pic.png';
 import Button from '../components/button';
 import { graphql } from 'gatsby';
+import sortByNewest from '../utils/sortByPublishAt';
 
 const Container = styled.div`
   .back {
@@ -85,10 +86,10 @@ const StyledRealizations = styled.div`
 `;
 
 export default function Realizations({ data }) {
-  const realizations = data.allDatoCmsRealization.nodes;
+  const realizations = sortByNewest(data.allDatoCmsRealization.nodes);
 
   return (
-    <Layout animation={true}>
+    <Layout>
       <SEO title="Realizacje" />
       {console.log(data)}
       <Main>
@@ -126,6 +127,9 @@ export const query = graphql`
     allDatoCmsRealization {
       nodes {
         id
+        meta {
+          publishedAt
+        }
         images {
           title
           url

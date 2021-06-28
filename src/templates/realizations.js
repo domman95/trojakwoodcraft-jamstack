@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Section from '../components/section';
 import Button from '../components/button';
+import sortByNewest from '../utils/sortByPublishAt';
 
 const StyledRealizations = styled.div`
   display: grid;
@@ -59,14 +60,9 @@ export default function Realizations({ data }) {
   const [sortedRealization, setSortedRealization] = useState(null);
 
   useEffect(() => {
-    const sortedByPublishedAt = data.sort((a, b) => {
-      const publishedAtA = a.meta.publishedAt;
-      const publishedAtB = b.meta.publishedAt;
-
-      return publishedAtA < publishedAtB ? 1 : -1;
-    });
-
-    setSortedRealization(sortedByPublishedAt.slice(0, 3));
+    const newest = sortByNewest(data);
+    const sliceFirstThree = newest.slice(0, 3);
+    setSortedRealization(sliceFirstThree);
   }, [data]);
 
   return (

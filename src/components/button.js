@@ -25,7 +25,7 @@ const StyledButton = styled.button`
 
 export default function Button({ children, primary, secondary, slug = null }) {
   const handleClick = (slug) => {
-    navigate(`/realizations/${slug}`, { replace: true });
+    navigate(`/realizacje/${slug}`, { replace: true });
   };
   return (
     <StyledButton

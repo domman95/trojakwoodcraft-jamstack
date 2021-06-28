@@ -100,7 +100,7 @@ const StyledAbout = styled.div`
 
 export default function About() {
   return (
-    <Section id="about" title="poznajmy się" nextName="realizacje">
+    <Section id="poznajmy-sie" title="poznajmy się" nextName="realizacje">
       <StyledAbout>
         <p className="about">
           <span>TROJAKwoodcraft </span>

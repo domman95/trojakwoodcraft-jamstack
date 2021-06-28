@@ -12,7 +12,6 @@ const Container = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    /* padding: 0 20px; */
 
     .arrow {
       display: flex;
@@ -105,7 +104,7 @@ const NextPrevContainer = styled.div`
 `;
 
 export default function Realizations({ pageContext }) {
-  const { id, images, slug, title, content } = pageContext;
+  const { images, title, content } = pageContext;
   return (
     <Layout animation={true}>
       <SEO title={title} />

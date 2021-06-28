@@ -29,11 +29,6 @@ const Nav = styled.nav`
     object-fit: cover;
     transform: ${({ show }) => (show ? 'translateY(0)' : 'translateY(-100%)')};
     transition: transform 0.3s linear;
-    ${({ animation }) =>
-      animation &&
-      css`
-        transform: translateY(0);
-      `}
   }
 
   @media (min-width: 768px) {
@@ -129,7 +124,7 @@ const Links = styled.ul`
   }
 `;
 
-export default function Navbar({ animation }) {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   const { showLogo } = useContext(Context);
@@ -139,22 +134,22 @@ export default function Navbar({ animation }) {
   };
 
   return (
-    <Nav show={showLogo} animation={animation}>
+    <Nav show={showLogo}>
       <Link to="/">
         <div className="logo">
-          <Logo animation={animation} />
+          <Logo />
         </div>
       </Link>
       <Hamburger open={isOpen} toggle={toggle} />
       <Links open={isOpen}>
         <li className="meetUs" style={{ '--delay': '.1s' }}>
-          <Link to="/#about">poznajmy się</Link>
+          <Link to="/#poznajmy-sie">poznajmy się</Link>
         </li>
         <li className="realizations" style={{ '--delay': '.2s' }}>
-          <Link to="/realizations">realizacje</Link>
+          <Link to="/realizacje">realizacje</Link>
         </li>
         <li className="contact" style={{ '--delay': '.3s' }}>
-          <Link to="/#contact">kontakt</Link>
+          <Link to="/#kontakt">kontakt</Link>
         </li>
       </Links>
     </Nav>
