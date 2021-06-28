@@ -85,7 +85,7 @@ const StyledRealizations = styled.div`
 `;
 
 export default function Realizations({ data }) {
-  const realizations = sortByNewest(data.allDatoCmsRealization.nodes);
+  const realizations = data.allDatoCmsRealization.nodes;
 
   return (
     <Layout>
@@ -122,7 +122,9 @@ export default function Realizations({ data }) {
 
 export const query = graphql`
   query realization {
-    allDatoCmsRealization {
+    allDatoCmsRealization(
+      sort: { fields: meta___firstPublishedAt, order: DESC }
+    ) {
       nodes {
         id
         meta {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import Layout from '../components/layout';
 import Main from '../components/main';
@@ -6,6 +6,8 @@ import SEO from '../components/SEO';
 import Section from '../components/section';
 import { Link } from 'gatsby';
 import Arrow from '../assets/arrow';
+import { useStaticQuery, graphql } from 'gatsby';
+import sortByNewest from '../utils/sortByPublishAt';
 
 const Container = styled.div`
   .back {
@@ -84,6 +86,11 @@ const NextPrevContainer = styled.div`
       }
     }
 
+    &.hide {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
     .arrow {
       display: flex;
       width: 28px;
@@ -104,18 +111,52 @@ const NextPrevContainer = styled.div`
 `;
 
 export default function Realizations({ pageContext }) {
-  const { images, title, content } = pageContext;
+  const [active, setActive] = useState(null);
+  const { allDatoCmsRealization } = useStaticQuery(graphql`
+    query {
+      allDatoCmsRealization(
+        sort: { fields: meta___firstPublishedAt, order: DESC }
+      ) {
+        nodes {
+          id
+          meta {
+            publishedAt
+          }
+          images {
+            title
+            url
+            alt
+          }
+          slug
+          title
+          content
+        }
+      }
+    }
+  `);
+
+  const { id: activeId, images, title, content } = pageContext;
+  const data = allDatoCmsRealization.nodes;
+
+  useEffect(() => {
+    const index = data.findIndex(({ id }) => {
+      return id === activeId;
+    });
+
+    setActive(index);
+  }, [data]);
+
   return (
     <Layout animation={true}>
       <SEO title={title} />
       <Main>
         <Section title={title}>
           <Container>
-            <Link to="/" className="back">
+            <Link to="/realizacje" className="back">
               <div className="arrow">
                 <Arrow />
               </div>
-              <p className="text">powrót na stronę główną</p>
+              <p className="text">powrót do realizacji</p>
             </Link>
             <Realization>
               <h3 className="realizationTitle">{title}</h3>
@@ -128,20 +169,32 @@ export default function Realizations({ pageContext }) {
                 ))}
               </div>
             </Realization>
-            <NextPrevContainer>
-              <Link to="/" className="link prev">
-                <div className="arrow prevArrow">
-                  <Arrow />
-                </div>
-                <p className="text">zobacz poprzednią realizację </p>
-              </Link>
-              <Link to="/" className="link next">
-                <div className="arrow nextArrow">
-                  <Arrow />
-                </div>
-                <p className="text">zobacz nastepną realizację </p>
-              </Link>
-            </NextPrevContainer>
+            {active !== null && (
+              <NextPrevContainer>
+                <Link
+                  to={`/realizacje/${
+                    active === 0 ? '' : data[active - 1].slug
+                  }`}
+                  className={`link prev ${active === 0 && 'hide'}`}>
+                  <div className="arrow prevArrow">
+                    <Arrow />
+                  </div>
+                  <p className="text">zobacz poprzednią realizację </p>
+                </Link>
+                <Link
+                  to={`/realizacje/${
+                    active === data.length - 1 ? '' : data[active + 1].slug
+                  }`}
+                  className={`link next ${
+                    active === data.length - 1 && 'hide'
+                  }`}>
+                  <div className="arrow nextArrow">
+                    <Arrow />
+                  </div>
+                  <p className="text">zobacz nastepną realizację </p>
+                </Link>
+              </NextPrevContainer>
+            )}
           </Container>
         </Section>
       </Main>

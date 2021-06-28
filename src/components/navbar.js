@@ -131,6 +131,7 @@ export default function Navbar() {
   const { showLogo, setShowLogo } = useContext(Context);
 
   useEffect(() => {
+    if (window.location.pathname !== '/') setShowLogo(true);
     if (window.location.pathname === '/') {
       window.addEventListener('scroll', () =>
         getOffsetTop(showLogo, setShowLogo)
@@ -138,9 +139,7 @@ export default function Navbar() {
     }
 
     return () => {
-      window.removeEventListener('scroll', () =>
-        getOffsetTop(showLogo, setShowLogo)
-      );
+      window.removeEventListener('scroll', getOffsetTop);
     };
   }, [showLogo, setShowLogo]);
 

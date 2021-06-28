@@ -7,7 +7,7 @@ exports.createPages = async ({ graphql, actions }) => {
   );
   const result = await graphql(`
     query realization {
-      allDatoCmsRealization {
+      allDatoCmsRealization(sort: { fields: meta___firstPublishedAt }) {
         nodes {
           id
           images {
