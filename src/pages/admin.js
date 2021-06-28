@@ -6,9 +6,9 @@ export default function Admin() {
 
   useEffect(() => {
     if (!isBrowser) return null;
-    return () => cleanup();
+    if (isBrowser) {
+      navigate('https://trojakwoodcraft.admin.datocms.com/', { replace: true });
+    }
   }, []);
-
-  navigate('https://trojakwoodcraft.admin.datocms.com/', { replace: true });
   return null;
 }
