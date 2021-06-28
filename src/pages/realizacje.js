@@ -6,7 +6,6 @@ import SEO from '../components/SEO';
 import Section from '../components/section';
 import { Link } from 'gatsby';
 import Arrow from '../assets/arrow';
-import Pic from '../assets/pic.png';
 import Button from '../components/button';
 import { graphql } from 'gatsby';
 import sortByNewest from '../utils/sortByPublishAt';
@@ -91,7 +90,6 @@ export default function Realizations({ data }) {
   return (
     <Layout>
       <SEO title="Realizacje" />
-      {console.log(data)}
       <Main>
         <Section title="Realizacje">
           <Container>

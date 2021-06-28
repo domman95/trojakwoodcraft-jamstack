@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import AnimationLogo from '../components/animationLogo';
 import Instagram from '../assets/instagram';
 import Facebook from '../assets/facebook';
-import Context from '../context';
 import Next from './scrollDownSign';
 
 const StyledHeader = styled.header`
@@ -81,23 +80,6 @@ const Media = styled.a`
 `;
 
 export default function Header() {
-  const { showLogo, setShowLogo } = useContext(Context);
-
-  useEffect(() => {
-    const getOffsetTop = () => {
-      const top = window.scrollY;
-
-      if (top >= 280 && !showLogo) setShowLogo(true);
-      if (top <= 279 && showLogo) setShowLogo(false);
-    };
-
-    window.addEventListener('scroll', getOffsetTop);
-
-    return () => {
-      window.removeEventListener('scroll', getOffsetTop);
-    };
-  }, [showLogo, setShowLogo]);
-
   return (
     <StyledHeader>
       <div className="logo">

@@ -27,9 +27,11 @@ const StyledSvg = styled.div`
 `;
 
 export default function AnimationLogo() {
+  const id = 'animationLogo';
+
   useEffect(() => {
-    const paths = document.querySelectorAll('#logo path');
-    const logo = document.getElementById('logo');
+    const paths = document.querySelectorAll(`#${id} path`);
+    const logo = document.getElementById(id);
 
     paths.forEach((path) => {
       path.style.strokeDashoffset = Math.round(path.getTotalLength());
@@ -41,13 +43,13 @@ export default function AnimationLogo() {
       )}s`;
     });
 
-    // logo.style.animation =
-    //   'fill 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 2.4s';
+    logo.style.animation =
+      'fill 1s cubic-bezier(0.165, 0.84, 0.44, 1) forwards 2.4s';
   }, []);
 
   return (
     <StyledSvg>
-      <Logo />
+      <Logo fill="none" id={id} />
     </StyledSvg>
   );
 }

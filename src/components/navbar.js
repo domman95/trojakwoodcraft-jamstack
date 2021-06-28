@@ -1,9 +1,10 @@
 import { Link } from 'gatsby';
-import React, { useState, useContext } from 'react';
-import styled, { css } from 'styled-components';
+import React, { useState, useContext, useEffect } from 'react';
+import styled from 'styled-components';
 import Logo from '../assets/logo';
 import Context from '../context';
 import Hamburger from './hamburger';
+import getOffsetTop from '../utils/getOffsetTop';
 
 const Nav = styled.nav`
   position: fixed;
@@ -127,7 +128,21 @@ const Links = styled.ul`
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { showLogo } = useContext(Context);
+  const { showLogo, setShowLogo } = useContext(Context);
+
+  useEffect(() => {
+    if (window.location.pathname === '/') {
+      window.addEventListener('scroll', () =>
+        getOffsetTop(showLogo, setShowLogo)
+      );
+    }
+
+    return () => {
+      window.removeEventListener('scroll', () =>
+        getOffsetTop(showLogo, setShowLogo)
+      );
+    };
+  }, [showLogo, setShowLogo]);
 
   const toggle = () => {
     setIsOpen((prev) => !prev);
@@ -137,7 +152,7 @@ export default function Navbar() {
     <Nav show={showLogo}>
       <Link to="/">
         <div className="logo">
-          <Logo />
+          <Logo fill="white" id="logo" />
         </div>
       </Link>
       <Hamburger open={isOpen} toggle={toggle} />

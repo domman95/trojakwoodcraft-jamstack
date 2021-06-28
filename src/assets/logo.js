@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import styled, { css } from 'styled-components';
 
-export default function Logo() {
+export default function Logo({ fill, id }) {
   return (
     <svg
       width="1001"
       height="174"
       viewBox="0 0 1001 174"
-      fill="none"
-      id="logo"
+      fill={fill}
+      id={id}
       xmlns="http://www.w3.org/2000/svg">
       <mask id="path-1-inside-1" fill="white">
         <path d="M99.9929 16.355H45.3727V5.71038H171.044V16.355H116.423V122.135H99.9929V16.355Z" />
