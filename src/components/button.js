@@ -23,7 +23,13 @@ const StyledButton = styled.button`
     `}
 `;
 
-export default function Button({ children, primary, secondary, slug = null }) {
+export default function Button({
+  children,
+  primary,
+  secondary,
+  slug = null,
+  type = null,
+}) {
   const handleClick = (slug) => {
     navigate(`/realizacje/${slug}`, { replace: true });
   };
@@ -31,6 +37,7 @@ export default function Button({ children, primary, secondary, slug = null }) {
     <StyledButton
       primary={primary}
       secondary={secondary}
+      type={type}
       onClick={slug && (() => handleClick(slug))}>
       {children}
     </StyledButton>

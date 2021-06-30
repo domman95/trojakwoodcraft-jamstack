@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '../components/button';
+import ContactForm from '../components/contactForm';
 import Section from '../components/section';
 
 const StyledContact = styled.div`
@@ -23,12 +23,14 @@ const ContactInfoWrapper = styled.div`
   .box {
     text-align: center;
 
-    p {
+    .name {
       font-size: 2rem;
+      margin-bottom: 5px;
+    }
 
-      &.name {
-        margin-bottom: 5px;
-      }
+    .content {
+      font-size: 2rem;
+      text-decoration: underline;
     }
 
     &:nth-child(1) {
@@ -63,6 +65,12 @@ const ContactFormWrapper = styled.div`
       flex: 1;
       width: 100%;
       margin-bottom: 10px;
+      padding: 5px 0;
+
+      .errorMessage {
+        color: coral;
+        margin-top: 5px;
+      }
 
       span {
         text-transform: uppercase;
@@ -74,6 +82,11 @@ const ContactFormWrapper = styled.div`
         border-bottom: 1px solid #cecece;
         background: transparent;
         color: white;
+        font-size: 16px;
+
+        &:focus {
+          outline: lime solid 1px;
+        }
       }
 
       input {
@@ -94,34 +107,20 @@ export default function Contact() {
         <ContactInfoWrapper>
           <div className="box phone">
             <p className="name">Telefon</p>
-            <p className="content">000-000-000</p>
+            <a className="content" href="tel:+48 730 742 846">
+              +48 730 742 846
+            </a>
           </div>
           <div className="box email">
             <p className="name">E-mail</p>
-            <p className="content">mail@mail.com</p>
+            <a className="content" href="mailto:trojakwoodcraft@gmail.com">
+              trojakwoodcraft@gmail.com
+            </a>
           </div>
         </ContactInfoWrapper>
         <ContactFormWrapper>
           <h3 className="formHeader">Zapraszamy do kontaktu</h3>
-          <form>
-            <label>
-              <span>imię</span>
-              <input type="text" />
-            </label>
-            <label>
-              <span>telefon</span>
-              <input type="text" />
-            </label>
-            <label>
-              <span>e-mail</span>
-              <input type="text" />
-            </label>
-            <label>
-              <span>wiadomość</span>
-              <textarea rows="5" />
-            </label>
-            <Button secondary>Wyślij wiadomość</Button>
-          </form>
+          <ContactForm />
         </ContactFormWrapper>
       </StyledContact>
     </Section>
