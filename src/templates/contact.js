@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ContactForm from '../components/contactForm';
 import Section from '../components/section';
+import SendMessageModal from '../components/sendMessageModal';
 
 const StyledContact = styled.div`
   display: grid;
@@ -40,6 +41,7 @@ const ContactInfoWrapper = styled.div`
 `;
 
 const ContactFormWrapper = styled.div`
+  position: relative;
   padding: 10px 20px;
   background: #333333;
 
@@ -68,7 +70,7 @@ const ContactFormWrapper = styled.div`
       padding: 5px 0;
 
       .errorMessage {
-        color: coral;
+        color: #ff9494;
         margin-top: 5px;
       }
 
@@ -101,6 +103,13 @@ const ContactFormWrapper = styled.div`
 `;
 
 export default function Contact() {
+  const [isSuccess, setIsSuccess] = useState(null);
+  const [toggleModal, setToggleModal] = useState(false);
+
+  useEffect(() => {
+    if (isSuccess !== null) setToggleModal(true);
+  }, [isSuccess]);
+
   return (
     <Section id="kontakt" title="kontakt">
       <StyledContact>
@@ -120,7 +129,13 @@ export default function Contact() {
         </ContactInfoWrapper>
         <ContactFormWrapper>
           <h3 className="formHeader">Zapraszamy do kontaktu</h3>
-          <ContactForm />
+          <ContactForm setIsSuccess={setIsSuccess} />
+          {toggleModal ? (
+            <SendMessageModal
+              isSuccess={isSuccess}
+              setToggleModal={setToggleModal}
+            />
+          ) : null}
         </ContactFormWrapper>
       </StyledContact>
     </Section>

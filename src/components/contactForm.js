@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import Button from './button';
 
-export default function ContactForm() {
+export default function ContactForm({ setIsSuccess }) {
   const encode = (data) => {
     return Object.keys(data)
       .map(
@@ -65,9 +65,9 @@ export default function ContactForm() {
           }),
         })
           .then(() => {
-            alert('send');
+            setIsSuccess(true);
           })
-          .catch((err) => alert(err));
+          .catch(() => setIsSuccess(false));
       }}>
       <Form
         name="contact-form"
