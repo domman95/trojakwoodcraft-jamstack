@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
+import Recaptcha from 'react-recaptcha';
 import Button from './button';
 
+const encode = (data) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+};
+
 export default function ContactForm({ setIsSuccess }) {
-  const encode = (data) => {
-    return Object.keys(data)
-      .map(
-        (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
-      )
-      .join('&');
-  };
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/api.js';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+  });
 
   return (
     <Formik
@@ -54,25 +63,29 @@ export default function ContactForm({ setIsSuccess }) {
         return errors;
       }}
       onSubmit={(data) => {
-        fetch('/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: encode({
-            'form-name': 'contact-form',
-            ...data,
-          }),
-        })
-          .then(() => {
-            setIsSuccess(true);
+        if (token !== null) {
+          fetch('/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: encode({
+              'form-name': 'contact-form',
+              ...data,
+              'g-recaptcha-response': token,
+            }),
           })
-          .catch(() => setIsSuccess(false));
+            .then(() => {
+              setIsSuccess(true);
+            })
+            .catch(() => setIsSuccess(false));
+        }
       }}>
       <Form
         name="contact-form"
         data-netlify="true"
-        data-netlify-honeypot="bot-field">
+        data-netlify-honeypot="bot-field"
+        data-netlify-recaptcha="true">
         <Field type="hidden" name="form-name" />
         <Field type="hidden" name="bot-field" />
 
@@ -104,6 +117,17 @@ export default function ContactForm({ setIsSuccess }) {
             <ErrorMessage name="message" />
           </div>
         </label>
+        <Recaptcha
+          sitekey={process.env.SITE_RECAPTCHA_KEY}
+          render="explicit"
+          theme="dark"
+          verifyCallback={(response) => {
+            setToken(response);
+          }}
+          onloadCallback={() => {
+            console.log('done loading');
+          }}
+        />
         <Button secondary type="submit">
           Wyślij wiadomość
         </Button>
