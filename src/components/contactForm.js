@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import Recaptcha from 'react-recaptcha';
+import ReCAPTCHA from 'react-google-recaptcha';
 import Button from './button';
+import { useEffect } from 'react';
 
 const encode = (data) => {
   return Object.keys(data)
@@ -12,13 +13,9 @@ const encode = (data) => {
 export default function ContactForm({ setIsSuccess }) {
   const [token, setToken] = useState(null);
 
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://www.google.com/recaptcha/api.js';
-    script.async = true;
-    script.defer = true;
-    document.body.appendChild(script);
-  });
+  const handleChange = (response) => {
+    setToken(response);
+  };
 
   return (
     <Formik
@@ -62,7 +59,7 @@ export default function ContactForm({ setIsSuccess }) {
 
         return errors;
       }}
-      onSubmit={(data) => {
+      onSubmit={(data, { resetForm }) => {
         if (token !== null) {
           fetch('/', {
             method: 'POST',
@@ -77,6 +74,7 @@ export default function ContactForm({ setIsSuccess }) {
           })
             .then(() => {
               setIsSuccess(true);
+              resetForm();
             })
             .catch(() => setIsSuccess(false));
         }
@@ -88,7 +86,6 @@ export default function ContactForm({ setIsSuccess }) {
         data-netlify-recaptcha="true">
         <Field type="hidden" name="form-name" />
         <Field type="hidden" name="bot-field" />
-
         <label>
           <span>imię:</span>
           <Field name="name" type="text" />
@@ -117,17 +114,11 @@ export default function ContactForm({ setIsSuccess }) {
             <ErrorMessage name="message" />
           </div>
         </label>
-        <Recaptcha
-          sitekey={process.env.SITE_RECAPTCHA_KEY}
-          render="explicit"
-          theme="dark"
-          verifyCallback={(response) => {
-            setToken(response);
-          }}
-          onloadCallback={() => {
-            console.log('done loading');
-          }}
+        <ReCAPTCHA
+          sitekey={process.env.GATSBY_SITE_KEY_RECAPTCHA}
+          onChange={handleChange}
         />
+        <br />
         <Button secondary type="submit">
           Wyślij wiadomość
         </Button>
