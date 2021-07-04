@@ -4,8 +4,8 @@ import Logo from '../assets/logo';
 
 const StyledSvg = styled.div`
   display: flex;
-
   width: 100%;
+
   @keyframes drawStroke {
     to {
       opacity: 1;
@@ -15,6 +15,13 @@ const StyledSvg = styled.div`
   }
 
   @keyframes fill {
+    0% {
+      opacity: 0;
+    }
+    1% {
+      opacity: 1;
+    }
+
     50% {
       fill: white;
     }

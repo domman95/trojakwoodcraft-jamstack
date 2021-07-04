@@ -28,8 +28,8 @@ const Nav = styled.nav`
     width: 115px;
     height: 60px;
     object-fit: cover;
-    transform: ${({ show }) => (show ? 'translateY(0)' : 'translateY(-100%)')};
-    transition: transform 0.3s linear;
+    transform: translateY(-100%);
+    animation: show 0.3s linear forwards;
   }
 
   @media (min-width: 768px) {
@@ -150,9 +150,11 @@ export default function Navbar() {
   return (
     <Nav show={showLogo}>
       <Link to="/">
-        <div className="logo">
-          <Logo fill="white" id="logo" />
-        </div>
+        {showLogo && (
+          <div className="logo">
+            <Logo fill="white" id="logo" />
+          </div>
+        )}
       </Link>
       <Hamburger open={isOpen} toggle={toggle} />
       <Links open={isOpen}>

@@ -6,7 +6,7 @@ import Context from '../context';
 import Footer from '../templates/footer';
 
 export default function Layout({ children }) {
-  const [showLogo, setShowLogo] = useState(true);
+  const [showLogo, setShowLogo] = useState(false);
 
   return (
     <Context.Provider value={{ showLogo, setShowLogo }}>

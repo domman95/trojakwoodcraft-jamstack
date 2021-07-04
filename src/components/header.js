@@ -25,6 +25,8 @@ const StyledHeader = styled.header`
     margin: 0 auto;
     height: auto;
     object-fit: cover;
+    opacity: 0;
+    animation: opacityChange 3s linear forwards;
   }
 
   .socials {
@@ -36,6 +38,12 @@ const StyledHeader = styled.header`
     bottom: 40px;
     left: 20px;
     z-index: 10;
+  }
+
+  @keyframes opacityChange {
+    to {
+      opacity: 1;
+    }
   }
 `;
 

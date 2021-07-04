@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import ContactForm from '../components/contactForm';
 import Section from '../components/section';
@@ -106,8 +107,22 @@ export default function Contact() {
   const [isSuccess, setIsSuccess] = useState(null);
   const [toggleModal, setToggleModal] = useState(false);
 
+  const data = useStaticQuery(graphql`
+    query {
+      allDatoCmsContact {
+        nodes {
+          email
+          phone
+        }
+      }
+    }
+  `);
+
+  const { email, phone } = data.allDatoCmsContact.nodes[0];
+
   useEffect(() => {
     if (isSuccess !== null) setToggleModal(true);
+    console.log(email, phone);
   }, [isSuccess]);
 
   return (
@@ -116,14 +131,14 @@ export default function Contact() {
         <ContactInfoWrapper>
           <div className="box phone">
             <p className="name">Telefon</p>
-            <a className="content" href="tel:+48 730 742 846">
-              +48 730 742 846
+            <a className="content" href={`tel:${phone}`}>
+              {phone}
             </a>
           </div>
           <div className="box email">
             <p className="name">E-mail</p>
-            <a className="content" href="mailto:trojakwoodcraft@gmail.com">
-              trojakwoodcraft@gmail.com
+            <a className="content" href={`mailto:${email}`}>
+              {email}
             </a>
           </div>
         </ContactInfoWrapper>
