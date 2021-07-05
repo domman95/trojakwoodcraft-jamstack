@@ -117,13 +117,11 @@ const Links = styled.ul`
 
     li {
       margin: 5px 15px;
-      opacity: ${({ home }) => (!home ? '1' : '0')};
+      opacity: 0;
       border: none;
       animation: none;
-      transform: ${({ open, home }) =>
-        !open && home ? 'translateX(-50%)' : 'translateX(0)'};
-      animation: ${({ open, home }) =>
-        !open && home && `showLinks .7s linear forwards`};
+      transform: ${({ open }) => !open && 'translateX(-50%)'};
+      animation: ${({ open }) => !open && `showLinks .7s linear forwards`};
 
       &.meetUs {
         animation-delay: 3.1s;

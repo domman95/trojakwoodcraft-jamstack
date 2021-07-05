@@ -1,6 +1,5 @@
 import React from 'react';
 import SEO from '../components/SEO';
-import Layout from '../components/layout';
 import Header from '../components/header';
 import Main from '../components/main';
 import About from '../templates/about';
@@ -12,7 +11,7 @@ export default function HomePage({ data }) {
   const realizations = data.allDatoCmsRealization.nodes;
 
   return (
-    <Layout>
+    <>
       <SEO title="Strona Główna" />
       <Header />
       <Main>
@@ -20,7 +19,7 @@ export default function HomePage({ data }) {
         <Realizations data={realizations} />
         <Contact />
       </Main>
-    </Layout>
+    </>
   );
 }
 

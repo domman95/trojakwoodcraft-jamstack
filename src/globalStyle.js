@@ -24,6 +24,8 @@ export const GlobalStyle = createGlobalStyle`
   body {
     min-height: -webkit-fill-available;
     font-size: 1.6rem;
+    background: var(--bgcColor);
+
   }
 
   html,

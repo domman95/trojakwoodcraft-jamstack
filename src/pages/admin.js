@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { navigate } from 'gatsby';
 import styled from 'styled-components';
-import Layout from '../components/layout';
 
 const Container = styled.div`
   width: 100%;
@@ -28,10 +27,10 @@ export default function Admin() {
     }
   }, []);
   return (
-    <Layout>
+    <>
       <Container>
         <h2>Jesteś przenoszony na stronę swojego dostawcy treści!</h2>
       </Container>
-    </Layout>
+    </>
   );
 }

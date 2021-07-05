@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Layout from '../components/layout';
 import Main from '../components/main';
 import SEO from '../components/SEO';
 import Section from '../components/section';
@@ -8,7 +7,6 @@ import { Link } from 'gatsby';
 import Arrow from '../assets/arrow';
 import Button from '../components/button';
 import { graphql } from 'gatsby';
-import sortByNewest from '../utils/sortByPublishAt';
 
 const Container = styled.div`
   .back {
@@ -88,7 +86,7 @@ export default function Realizations({ data }) {
   const realizations = data.allDatoCmsRealization.nodes;
 
   return (
-    <Layout>
+    <>
       <SEO title="Realizacje" />
       <Main>
         <Section title="Realizacje">
@@ -116,7 +114,7 @@ export default function Realizations({ data }) {
           </Container>
         </Section>
       </Main>
-    </Layout>
+    </>
   );
 }
 

@@ -1,5 +1,4 @@
-import * as React from 'react';
-import Layout from '../components/layout';
+import React from 'react';
 import Section from '../components/section';
 import Error404 from '../assets/Error404';
 import { Link } from '@reach/router';
@@ -25,7 +24,7 @@ const Container = styled.div`
 
 const NotFoundPage = () => {
   return (
-    <Layout>
+    <>
       <Section>
         <Container>
           <div className="404">
@@ -41,7 +40,7 @@ const NotFoundPage = () => {
           </Link>
         </Container>
       </Section>
-    </Layout>
+    </>
   );
 };
 
