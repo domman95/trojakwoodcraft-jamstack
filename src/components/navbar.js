@@ -117,11 +117,13 @@ const Links = styled.ul`
 
     li {
       margin: 5px 15px;
-      opacity: 0;
+      opacity: ${({ home }) => (!home ? '1' : '0')};
       border: none;
       animation: none;
-      transform: ${({ open }) => !open && 'translateX(-50%)'};
-      animation: ${({ open }) => !open && `showLinks .7s linear forwards`};
+      transform: ${({ open, home }) =>
+        !open && home ? 'translateX(-50%)' : 'translateX(0)'};
+      animation: ${({ open, home }) =>
+        !open && home && `showLinks .7s linear forwards`};
 
       &.meetUs {
         animation-delay: 3.1s;
@@ -147,11 +149,15 @@ const Links = styled.ul`
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isHome, setIsHome] = useState(true);
 
   const { showLogo, setShowLogo } = useContext(Context);
 
   useEffect(() => {
-    if (window.location.pathname !== '/') setShowLogo(true);
+    if (window.location.pathname !== '/') {
+      setShowLogo(true);
+      setIsHome(false);
+    }
     if (window.location.pathname === '/') {
       window.addEventListener('scroll', () =>
         getOffsetTop(showLogo, setShowLogo)
@@ -161,7 +167,7 @@ export default function Navbar() {
     return () => {
       window.removeEventListener('scroll', getOffsetTop);
     };
-  }, [showLogo, setShowLogo]);
+  }, [showLogo, setShowLogo, isHome, setIsHome]);
 
   const toggle = () => {
     setIsOpen((prev) => !prev);
@@ -177,7 +183,7 @@ export default function Navbar() {
         )}
       </Link>
       <Hamburger open={isOpen} toggle={toggle} />
-      <Links open={isOpen}>
+      <Links open={isOpen} home={isHome}>
         <li className="meetUs" style={{ '--delay': '.1s' }}>
           <Link to="/#poznajmy-sie">poznajmy się</Link>
         </li>
