@@ -117,10 +117,30 @@ const Links = styled.ul`
 
     li {
       margin: 5px 15px;
-      opacity: 1;
+      opacity: 0;
       border: none;
       animation: none;
-      transform: translateY(0);
+      transform: ${({ open }) => !open && 'translateX(-50%)'};
+      animation: ${({ open }) => !open && `showLinks .7s linear forwards`};
+
+      &.meetUs {
+        animation-delay: 3.1s;
+      }
+
+      &.realizations {
+        animation-delay: 2.8s;
+      }
+
+      &.contact {
+        animation-delay: 2.5s;
+      }
+    }
+
+    @keyframes showLinks {
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
   }
 `;

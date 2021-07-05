@@ -46,4 +46,17 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  .scrollAnimation {
+    transform: translateY(-25%);
+    opacity: 0;
+    animation: scroll 1s linear forwards;
+  }
+
+  @keyframes scroll {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
 `;

@@ -102,7 +102,7 @@ export default function About() {
   return (
     <Section id="poznajmy-sie" title="poznajmy się" nextName="realizacje">
       <StyledAbout>
-        <p className="about">
+        <p className="about scrollAnimation">
           <span>TROJAKwoodcraft </span>
           jest firmą która istnieje krótko na rynku ale z wielkim zapałem,
           zaangażowaniem i świeżą energią zajmujemy się produkcją małej i dużej
