@@ -33,6 +33,9 @@ const NotFoundPage = () => {
           </div>
           <h3 className="headerError">Upsss!</h3>
           <p className="textErrors">Coś poszło nie tak.</p>
+          <p className="textErrors">
+            Nie możemy znaleźć strony, której szukasz.
+          </p>
           <Link className="linkError" to="/">
             wróć na stronę główną
           </Link>

@@ -7,7 +7,7 @@ import Section from '../components/section';
 import { Link } from 'gatsby';
 import Arrow from '../assets/arrow';
 import { useStaticQuery, graphql } from 'gatsby';
-import sortByNewest from '../utils/sortByPublishAt';
+import ReactMarkdown from 'react-markdown';
 
 const Container = styled.div`
   .back {
@@ -36,6 +36,22 @@ const Realization = styled.article`
 
   .realizationTitle {
     margin: 20px 0;
+  }
+
+  .realizationDescription {
+    p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    ul {
+      padding: 10px 30px;
+    }
+
+    a {
+      text-decoration: underline;
+    }
   }
 
   .realizationGallery {
@@ -149,6 +165,7 @@ export default function Realizations({ pageContext }) {
   return (
     <Layout animation={true}>
       <SEO title={title} />
+      {console.log(pageContext)}
       <Main>
         <Section title={title}>
           <Container>
@@ -159,8 +176,10 @@ export default function Realizations({ pageContext }) {
               <p className="text">powrót do realizacji</p>
             </Link>
             <Realization>
-              <h3 className="realizationTitle">{title}</h3>
-              <p className="realizationDescription">{content}</p>
+              <h2 className="realizationTitle">{title}</h2>
+              <ReactMarkdown className="realizationDescription">
+                {content}
+              </ReactMarkdown>
               <div className="realizationGallery">
                 {images.map(({ title, alt, url }) => (
                   <div className="image" key={title}>
