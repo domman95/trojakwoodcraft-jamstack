@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import ScrollDownSign from './scrollDownSign';
 
@@ -84,20 +83,8 @@ const Container = styled.div`
 `;
 
 export default function Section({ id, title, children, nextName }) {
-  const [offsetTop, setOffsetTop] = useState();
-  const [height, setHeight] = useState();
-
-  const myRef = React.createRef();
-
-  useEffect(() => {
-    setOffsetTop(myRef.current.offsetTop);
-    setHeight(myRef.current.clientHeight);
-
-    console.log(myRef.current);
-  }, [offsetTop, height]);
-
   return (
-    <StyledSection id={id} ref={myRef} oftop={offsetTop} height={height}>
+    <StyledSection id={id}>
       <h2 className="title up">{title}</h2>
       <h2 className="title down">{title}</h2>
       <Container>

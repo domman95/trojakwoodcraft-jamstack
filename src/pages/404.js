@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import Section from '../components/section';
 import Error404 from '../assets/Error404';
 import { Link } from '@reach/router';

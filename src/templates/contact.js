@@ -122,7 +122,6 @@ export default function Contact() {
 
   useEffect(() => {
     if (isSuccess !== null) setToggleModal(true);
-    console.log(email, phone);
   }, [isSuccess]);
 
   return (
