@@ -10,8 +10,6 @@ const StyledRealizations = styled.div`
   grid-template-rows: repeat(auto-fill, minmax(300px, 320px));
   margin: 20px 10px;
   box-shadow: -10px 10px 4px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
-
   .mainImg img {
     width: 100%;
     height: 100%;
