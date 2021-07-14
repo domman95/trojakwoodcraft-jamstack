@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Button from './button';
-import { useEffect } from 'react';
+import styled from 'styled-components';
 
 const encode = (data) => {
   return Object.keys(data)
@@ -12,6 +12,14 @@ const encode = (data) => {
 
 export default function ContactForm({ setIsSuccess }) {
   const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://www.google.com/recaptcha/api.js';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+  }, []);
 
   const handleChange = (response) => {
     setToken(response);
@@ -60,6 +68,7 @@ export default function ContactForm({ setIsSuccess }) {
         return errors;
       }}
       onSubmit={(data, { resetForm }) => {
+        console.log(data);
         if (token !== null) {
           fetch('/', {
             method: 'POST',
@@ -67,9 +76,8 @@ export default function ContactForm({ setIsSuccess }) {
               'Content-Type': 'application/x-www-form-urlencoded',
             },
             body: encode({
-              'form-name': 'contact-form',
               ...data,
-              'g-recaptcha-response': token,
+              'form-name': 'contact-form',
             }),
           })
             .then(() => {

@@ -163,9 +163,8 @@ export default function Realizations({ pageContext }) {
   }, [data]);
 
   return (
-    <Layout animation={true}>
+    <div animation={true}>
       <SEO title={title} />
-      {console.log(pageContext)}
       <Main>
         <Section title={title}>
           <Container>
@@ -217,6 +216,6 @@ export default function Realizations({ pageContext }) {
           </Container>
         </Section>
       </Main>
-    </Layout>
+    </div>
   );
 }

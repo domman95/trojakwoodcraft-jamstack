@@ -3,7 +3,7 @@ import SEO from './SEO';
 import { GlobalStyle } from '../globalStyle';
 import Navbar from './navbar';
 import Context from '../context';
-import Footer from '../templates/footer';
+import Footer from '../components/footer';
 
 export default function Layout({ children }) {
   const [showLogo, setShowLogo] = useState(false);
