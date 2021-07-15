@@ -4,14 +4,16 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import Button from './button';
 import styled from 'styled-components';
 
-const encode = (data) => {
-  return Object.keys(data)
-    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&');
-};
-
 export default function ContactForm({ setIsSuccess }) {
   const [token, setToken] = useState(null);
+
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(
+        (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
+      )
+      .join('&');
+  };
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -23,6 +25,19 @@ export default function ContactForm({ setIsSuccess }) {
 
   const handleChange = (response) => {
     setToken(response);
+  };
+
+  const handleSubmit = (data) => {
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': 'contact-form',
+        ...data,
+      }),
+    })
+      .then(() => console.log('send'))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -67,32 +82,13 @@ export default function ContactForm({ setIsSuccess }) {
 
         return errors;
       }}
-      onSubmit={(data, { resetForm }) => {
-        console.log(data);
-        if (token !== null) {
-          fetch('/', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: encode({
-              ...data,
-              'form-name': 'contact-form',
-            }),
-          })
-            .then(() => {
-              setIsSuccess(true);
-              resetForm();
-            })
-            .catch(() => setIsSuccess(false));
-        }
-      }}>
+      onSubmit={handleSubmit}>
       <Form
         name="contact-form"
+        method="POST"
         data-netlify="true"
-        data-netlify-honeypot="bot-field"
-        data-netlify-recaptcha="true">
-        <Field type="hidden" name="form-name" />
+        data-netlify-honeypot="bot-field">
+        <Field type="hidden" name="form-name" value="contact-form" />
         <Field type="hidden" name="bot-field" />
         <label>
           <span>imię:</span>
@@ -122,10 +118,10 @@ export default function ContactForm({ setIsSuccess }) {
             <ErrorMessage name="message" />
           </div>
         </label>
-        <ReCAPTCHA
+        {/* <ReCAPTCHA
           sitekey={process.env.GATSBY_SITE_KEY_RECAPTCHA}
           onChange={handleChange}
-        />
+        /> */}
         <br />
         <Button secondary type="submit">
           Wyślij wiadomość
