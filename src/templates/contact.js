@@ -75,6 +75,13 @@ const ContactFormWrapper = styled.div`
         margin-top: 5px;
       }
 
+      &.recaptcha {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
       span {
         text-transform: uppercase;
       }

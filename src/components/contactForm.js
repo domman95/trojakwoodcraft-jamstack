@@ -52,6 +52,7 @@ export default function ContactForm({ setIsSuccess }) {
         phone: '',
         email: '',
         message: '',
+        recaptcha: '',
       }}
       validate={(values) => {
         const errors = {};
@@ -83,6 +84,10 @@ export default function ContactForm({ setIsSuccess }) {
           errors.message = 'To pole jest wymagane!';
         } else if (values.message.length <= 9) {
           errors.message = 'To pole wymaga minimum 10 znaków.';
+        }
+
+        if (!values.recaptcha && token === null) {
+          errors.recaptcha = 'Potwierdź, ze nie jesteś robotem!';
         }
 
         return errors;
@@ -123,10 +128,17 @@ export default function ContactForm({ setIsSuccess }) {
             <ErrorMessage name="message" />
           </div>
         </label>
-        <ReCAPTCHA
-          sitekey={process.env.GATSBY_SITE_KEY_RECAPTCHA}
-          onChange={handleChange}
-        />
+        <label className="recaptcha">
+          <ReCAPTCHA
+            sitekey={process.env.GATSBY_SITE_KEY_RECAPTCHA}
+            onChange={handleChange}
+            name="recaptcha"
+          />
+          <div className="errorMessage">
+            <ErrorMessage name="recaptcha" />
+          </div>
+        </label>
+
         <br />
         <Button secondary type="submit">
           Wyślij wiadomość
