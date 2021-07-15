@@ -27,17 +27,23 @@ export default function ContactForm({ setIsSuccess }) {
     setToken(response);
   };
 
-  const handleSubmit = (data) => {
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': 'contact-form',
-        ...data,
-      }),
-    })
-      .then(() => console.log('send'))
-      .catch((err) => console.log(err));
+  const handleSubmit = (data, { resetForm }) => {
+    if (token !== null) {
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({
+          'form-name': 'contact-form',
+          ...data,
+          'g-recaptcha-response': token,
+        }),
+      })
+        .then(() => {
+          setIsSuccess(true);
+          resetForm();
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -87,7 +93,8 @@ export default function ContactForm({ setIsSuccess }) {
         name="contact-form"
         method="POST"
         data-netlify="true"
-        data-netlify-honeypot="bot-field">
+        data-netlify-honeypot="bot-field"
+        data-netlify-recaptcha="true">
         <Field type="hidden" name="form-name" value="contact-form" />
         <Field type="hidden" name="bot-field" />
         <label>
@@ -118,10 +125,10 @@ export default function ContactForm({ setIsSuccess }) {
             <ErrorMessage name="message" />
           </div>
         </label>
-        {/* <ReCAPTCHA
+        <ReCAPTCHA
           sitekey={process.env.GATSBY_SITE_KEY_RECAPTCHA}
           onChange={handleChange}
-        /> */}
+        />
         <br />
         <Button secondary type="submit">
           Wyślij wiadomość
