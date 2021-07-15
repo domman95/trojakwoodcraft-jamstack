@@ -35,7 +35,6 @@ export default function ContactForm({ setIsSuccess }) {
         body: encode({
           'form-name': 'contact-form',
           ...data,
-          'g-recaptcha-response': token,
         }),
       })
         .then(() => {
@@ -93,8 +92,7 @@ export default function ContactForm({ setIsSuccess }) {
         name="contact-form"
         method="POST"
         data-netlify="true"
-        data-netlify-honeypot="bot-field"
-        data-netlify-recaptcha="true">
+        data-netlify-honeypot="bot-field">
         <Field type="hidden" name="form-name" value="contact-form" />
         <Field type="hidden" name="bot-field" />
         <label>
