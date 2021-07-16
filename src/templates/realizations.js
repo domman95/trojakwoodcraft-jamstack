@@ -70,7 +70,7 @@ export default function Realizations({ data }) {
         sortedRealization.map((item) => (
           <StyledRealizations className="realization" key={item.id}>
             <div className="mainImg">
-              <img src={item.images[0].url} alt={item.images[0].alt} />
+              <img src={item.images[0].url} alt={item.images[0].title} />
             </div>
             <div className="mainInfo">
               <h3 className="mainInfo__title">{item.title}</h3>

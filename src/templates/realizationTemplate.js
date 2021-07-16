@@ -180,9 +180,9 @@ export default function Realizations({ pageContext }) {
                 {content}
               </ReactMarkdown>
               <div className="realizationGallery">
-                {images.map(({ title, alt, url }) => (
+                {images.map(({ title, url }) => (
                   <div className="image" key={title}>
-                    <img src={url} alt={alt} />
+                    <img src={url} alt={title} />
                   </div>
                 ))}
               </div>
