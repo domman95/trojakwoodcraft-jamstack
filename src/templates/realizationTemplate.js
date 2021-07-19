@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import Layout from '../components/layout';
 import Main from '../components/main';
 import SEO from '../components/SEO';
 import Section from '../components/section';
@@ -8,6 +7,8 @@ import { Link } from 'gatsby';
 import Arrow from '../assets/arrow';
 import { useStaticQuery, graphql } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
+import Img from 'gatsby-image';
+import { Image } from 'react-datocms';
 
 const Container = styled.div`
   .back {
@@ -127,6 +128,7 @@ const NextPrevContainer = styled.div`
 `;
 
 export default function Realizations({ pageContext }) {
+  const [pageData, setPageData] = useState(null);
   const [active, setActive] = useState(null);
   const { allDatoCmsRealization } = useStaticQuery(graphql`
     query {
@@ -142,6 +144,9 @@ export default function Realizations({ pageContext }) {
             title
             url
             alt
+            fluid {
+              ...GatsbyDatoCmsFluid
+            }
           }
           slug
           title
@@ -158,6 +163,9 @@ export default function Realizations({ pageContext }) {
     const index = data.findIndex(({ id }) => {
       return id === activeId;
     });
+
+    const pageContextData = data.filter(({ id }) => id === activeId);
+    setPageData(...pageContextData);
 
     setActive(index);
   }, [data]);
@@ -180,11 +188,17 @@ export default function Realizations({ pageContext }) {
                 {content}
               </ReactMarkdown>
               <div className="realizationGallery">
-                {images.map(({ title, url }) => (
-                  <div className="image" key={title}>
-                    <img src={url} alt={title} />
-                  </div>
-                ))}
+                {pageData &&
+                  pageData.images.map(({ title, url, fluid }) => (
+                    <div className="image" key={url}>
+                      <Img
+                        fluid={fluid}
+                        style={{ height: '100%', width: '100%' }}
+                        imgStyle={{ objectFit: 'cover' }}
+                        alt={title}
+                      />
+                    </div>
+                  ))}
               </div>
             </Realization>
             {active !== null && (

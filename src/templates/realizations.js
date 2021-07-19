@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Section from '../components/section';
 import Button from '../components/button';
 import sortByNewest from '../utils/sortByPublishAt';
+import Img from 'gatsby-image';
 
 const StyledRealizations = styled.div`
   display: grid;
@@ -10,6 +11,7 @@ const StyledRealizations = styled.div`
   grid-template-rows: repeat(auto-fill, minmax(300px, 320px));
   margin: 20px 10px;
   box-shadow: -10px 10px 4px rgba(0, 0, 0, 0.25);
+
   .mainImg img {
     width: 100%;
     height: 100%;
@@ -70,7 +72,13 @@ export default function Realizations({ data }) {
         sortedRealization.map((item) => (
           <StyledRealizations className="realization" key={item.id}>
             <div className="mainImg">
-              <img src={item.images[0].url} alt={item.images[0].title} />
+              {console.log(item.images[0])}
+              <Img
+                fluid={item.images[0].fluid}
+                style={{ height: '100%', width: '100%' }}
+                imgStyle={{ objectFit: 'cover' }}
+                alt={item.images[0].title}
+              />
             </div>
             <div className="mainInfo">
               <h3 className="mainInfo__title">{item.title}</h3>

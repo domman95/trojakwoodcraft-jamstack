@@ -12,6 +12,8 @@ module.exports = {
   plugins: [
     'gatsby-plugin-styled-components',
     'babel-plugin-styled-components',
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-source-datocms`,
       options: {
