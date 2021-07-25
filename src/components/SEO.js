@@ -6,7 +6,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 export default function SEO({ title }) {
   const { site } = useStaticQuery(query);
 
-  const { defaultTitle, titleTemplate } = site.siteMetadata;
+  const { defaultTitle, titleTemplate, description } = site.siteMetadata;
 
   const seo = {
     title: title || defaultTitle,
@@ -21,6 +21,7 @@ export default function SEO({ title }) {
         as="style"
         crossorigin=""
       />
+      <meta name="description" content={description} />
     </Helmet>
   );
 }
@@ -31,6 +32,7 @@ const query = graphql`
       siteMetadata {
         defaultTitle: title
         titleTemplate
+        description
       }
     }
   }

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useStaticQuery, graphql } from 'gatsby';
 import Section from '../components/section';
 import Offer from '../assets/offer';
 import Locale from '../assets/locale';
@@ -99,15 +100,22 @@ const StyledAbout = styled.div`
 `;
 
 export default function About() {
+  const { allDatoCmsMainInformation } = useStaticQuery(graphql`
+    query {
+      allDatoCmsMainInformation {
+        nodes {
+          about
+        }
+      }
+    }
+  `);
+
+  const { about } = allDatoCmsMainInformation.nodes[0];
+
   return (
     <Section id="poznajmy-sie" title="poznajmy się" nextName="realizacje">
       <StyledAbout>
-        <p className="about scrollAnimation">
-          <span>TROJAKwoodcraft </span>
-          jest firmą która istnieje krótko na rynku ale z wielkim zapałem,
-          zaangażowaniem i świeżą energią zajmujemy się produkcją małej i dużej
-          architektury ogrodowej z drewna oraz drewna łączonego z metalem.
-        </p>
+        <p className="about scrollAnimation">{about}</p>
         <article className="wrapper">
           <div className="card offer">
             <Tilt className="tilt" style={{}}>

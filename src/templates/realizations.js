@@ -72,7 +72,6 @@ export default function Realizations({ data }) {
         sortedRealization.map((item) => (
           <StyledRealizations className="realization" key={item.id}>
             <div className="mainImg">
-              {console.log(item.images[0])}
               <Img
                 fluid={item.images[0].fluid}
                 style={{ height: '100%', width: '100%' }}
