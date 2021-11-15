@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Formik, input, Form, ErrorMessage } from 'formik';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Button from './button';
 
@@ -94,32 +94,32 @@ export default function ContactForm({ setIsSuccess }) {
         name="contact-form"
         data-netlify="true"
         data-netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="contact-form" />
-        <input type="hidden" name="bot-input" />
+        <Field type="hidden" name="contact-form" />
+        <Field type="hidden" name="bot-field" />
         <label>
           <span>imię:</span>
-          <input name="name" type="text" />
+          <Field name="name" type="text" />
           <div className="errorMessage">
             <ErrorMessage name="name" />
           </div>
         </label>
         <label>
           <span>email:</span>
-          <input name="email" type="text" />
+          <Field name="email" type="text" />
           <div className="errorMessage">
             <ErrorMessage name="email" />
           </div>
         </label>
         <label>
           <span>telefon:</span>
-          <input name="phone" type="text" />
+          <Field name="phone" type="text" />
           <div className="errorMessage">
             <ErrorMessage name="phone" />
           </div>
         </label>
         <label>
           <span>wiadomość:</span>
-          <input name="message" as="textarea" rows="5" />
+          <Field name="message" as="textarea" rows="5" />
           <div className="errorMessage">
             <ErrorMessage name="message" />
           </div>
