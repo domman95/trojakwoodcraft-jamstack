@@ -92,9 +92,8 @@ export default function ContactForm({ setIsSuccess }) {
       onSubmit={handleSubmit}>
       <Form
         name="contact-form"
-        method="POST"
         data-netlify="true"
-        data-netlify-honeypot="bot-input">
+        data-netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact-form" />
         <input type="hidden" name="bot-input" />
         <label>
