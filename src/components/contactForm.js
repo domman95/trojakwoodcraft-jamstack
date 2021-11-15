@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, input, Form, ErrorMessage } from 'formik';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Button from './button';
-import styled from 'styled-components';
+
+const encode = (data) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+};
 
 export default function ContactForm({ setIsSuccess }) {
   const [token, setToken] = useState(null);
-
-  const encode = (data) => {
-    return Object.keys(data)
-      .map(
-        (key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])
-      )
-      .join('&');
-  };
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -97,33 +94,33 @@ export default function ContactForm({ setIsSuccess }) {
         name="contact-form"
         method="POST"
         data-netlify="true"
-        data-netlify-honeypot="bot-field">
-        <Field type="hidden" name="form-name" value="contact-form" />
-        <Field type="hidden" name="bot-field" />
+        data-netlify-honeypot="bot-input">
+        <input type="hidden" name="form-name" value="contact-form" />
+        <input type="hidden" name="bot-input" />
         <label>
           <span>imię:</span>
-          <Field name="name" type="text" />
+          <input name="name" type="text" />
           <div className="errorMessage">
             <ErrorMessage name="name" />
           </div>
         </label>
         <label>
           <span>email:</span>
-          <Field name="email" type="text" />
+          <input name="email" type="text" />
           <div className="errorMessage">
             <ErrorMessage name="email" />
           </div>
         </label>
         <label>
           <span>telefon:</span>
-          <Field name="phone" type="text" />
+          <input name="phone" type="text" />
           <div className="errorMessage">
             <ErrorMessage name="phone" />
           </div>
         </label>
         <label>
           <span>wiadomość:</span>
-          <Field name="message" as="textarea" rows="5" />
+          <input name="message" as="textarea" rows="5" />
           <div className="errorMessage">
             <ErrorMessage name="message" />
           </div>
